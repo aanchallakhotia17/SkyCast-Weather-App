@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkyCast | Weather Forecasting App</title>
+
+    <meta name="description"
+          content="A mobile-friendly weather forecasting application.">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="SkyCast home">
+            <span class="brand-icon">☀</span>
+            <span>SkyCast</span>
+        </a>
+
+        <span class="header-label">WEATHER FORECAST</span>
+    </header>
+
+    <main class="container">
+
+        <!-- Page heading -->
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL WEATHER GUIDE</p>
+                <h1>Weather Forecast</h1>
+                <p class="subtitle">
+                    Know the weather. Plan your day.
+                </p>
+            </div>
+            <div class="weather-symbol" aria-hidden="true">🌤️</div>
+        </section>
+
+        <!-- City search -->
+        <section class="search-section" aria-label="Search weather by city">
+            <form id="searchForm" class="search-box">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+
+                <label class="visually-hidden" for="cityInput">
+                    Enter city name
+                </label>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city, e.g. Delhi"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit" id="searchButton">
+                    Search
+                </button>
+            </form>
+
+            <p id="message" class="message" role="status" aria-live="polite">
+                Enter a city to search for its weather.
+            </p>
+        </section>
+
+        <!-- Current weather -->
+        <section class="current-weather card" aria-labelledby="cityName">
+            <div class="current-top">
+                <div>
+                    <p class="section-label">CURRENT WEATHER</p>
+                    <h2 id="cityName">New Delhi, India</h2>
+                    <p id="currentDate" class="muted">Today's forecast</p>
+                </div>
+
+                <div id="currentIcon" class="current-icon"
+                     role="img" aria-label="Partly cloudy">
+                    🌤️
+                </div>
+            </div>
+
+            <div class="temperature-row">
+                <div class="temperature">
+                    <span id="temperature">28</span><span>°C</span>
+                </div>
+
+                <div class="condition">
+                    <p id="weatherCondition">Partly Cloudy</p>
+                    <p class="muted">
+                        Feels like <strong id="feelsLike">30°C</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="weather-details">
+                <article class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">💧</span>
+                    <div>
+                        <p class="detail-label">Humidity</p>
+                        <p class="detail-value" id="humidity">65%</p>
+                    </div>
+                </article>
+
+                <article class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">💨</span>
+                    <div>
+                        <p class="detail-label">Wind Speed</p>
+                        <p class="detail-value" id="windSpeed">12 km/h</p>
+                    </div>
+                </article>
+
+                <article class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">🌡️</span>
+                    <div>
+                        <p class="detail-label">Pressure</p>
+                        <p class="detail-value" id="pressure">1008 hPa</p>
+                    </div>
+                </article>
+            </div>
+
+            <p class="data-note">
+                Demo weather values — live data will be connected later.
+            </p>
+        </section>
+
+        <!-- Hourly forecast -->
+        <section class="forecast-section">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">PLAN AHEAD</p>
+                    <h2>Hourly Forecast</h2>
+                </div>
+                <span class="small-note">Next few hours</span>
+            </div>
+
+            <div class="hourly-grid">
+                <article class="hour-card">
+                    <p>Now</p>
+                    <span>🌤️</span>
+                    <strong>28°</strong>
+                </article>
+
+                <article class="hour-card">
+                    <p>3 PM</p>
+                    <span>☀️</span>
+                    <strong>30°</strong>
+                </article>
+
+                <article class="hour-card">
+                    <p>4 PM</p>
+                    <span>⛅</span>
+                    <strong>29°</strong>
+                </article>
+
+                <article class="hour-card">
+                    <p>5 PM</p>
+                    <span>🌥️</span>
+                    <strong>27°</strong>
+                </article>
+
+                <article class="hour-card">
+                    <p>6 PM</p>
+                    <span>🌙</span>
+                    <strong>25°</strong>
+                </article>
+            </div>
+        </section>
+
+        <!-- Weekly forecast -->
+        <section class="forecast-section">
+            <h2>5-Day Weather Forecast</h2>
+            <p id="forecastCity">Search a city to view its forecast.</p>
+            <p id="forecastMessage" role="status"></p>
+
+    <div id="forecastContainer" class="forecast-grid"></div>
+</section>
+        <!-- Saved cities: functionality will be added later -->
+        <section class="saved-section card">
+            <div>
+                <p class="section-label">QUICK ACCESS</p>
+                <h2>Favourite Cities</h2>
+                <p class="muted">
+                    Save your favourite locations for quick access.
+                </p>
+            </div>
+
+            <p class="feature-status">
+                <span aria-hidden="true">☆</span>
+                Favourites feature coming soon
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>SkyCast Weather App</p>
+        <p>Academic Project · Weather Forecasting</p>
+    </footer>
+
+    <section class="history-section">
+    <h2>Recent Weather Searches</h2>
+    <button id="loadHistory">View Search History</button>
+    <p id="historyMessage"></p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>Condition</th>
+                    <th>Search Time</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
